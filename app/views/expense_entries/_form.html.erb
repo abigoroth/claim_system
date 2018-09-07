@@ -1,0 +1,64 @@
+<%= form_with(model: expense_entry, local: true) do |form| %>
+  <% if expense_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expense_entry.errors.count, "error") %> prohibited this expense_entry from being saved:</h2>
+
+      <ul>
+      <% expense_entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :created %>
+    <%= form.date_select :created %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :travel_distance %>
+    <%= form.text_field :travel_distance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :travel_price %>
+    <%= form.text_field :travel_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :food_price %>
+    <%= form.text_field :food_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parking_price %>
+    <%= form.text_field :parking_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :toll_price %>
+    <%= form.text_field :toll_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fixed_asset_price %>
+    <%= form.text_field :fixed_asset_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :misc_price %>
+    <%= form.text_field :misc_price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+

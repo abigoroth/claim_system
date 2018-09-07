@@ -1,0 +1,49 @@
+
+
+<p>
+  <strong>Created:</strong>
+  <%= @expense_entry.created %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @expense_entry.description %>
+</p>
+
+<p>
+  <strong>Travel distance:</strong>
+  <%= @expense_entry.travel_distance %>
+</p>
+
+<p>
+  <strong>Travel price:</strong>
+  <%= @expense_entry.travel_price %>
+</p>
+
+<p>
+  <strong>Food price:</strong>
+  <%= @expense_entry.food_price %>
+</p>
+
+<p>
+  <strong>Parking price:</strong>
+  <%= @expense_entry.parking_price %>
+</p>
+
+<p>
+  <strong>Toll price:</strong>
+  <%= @expense_entry.toll_price %>
+</p>
+
+<p>
+  <strong>Fixed asset price:</strong>
+  <%= @expense_entry.fixed_asset_price %>
+</p>
+
+<p>
+  <strong>Misc price:</strong>
+  <%= @expense_entry.misc_price %>
+</p>
+
+<%= link_to 'Edit', edit_expense_entry_path(@expense_entry) %> |
+<%= link_to 'Back', expense_entries_path %>

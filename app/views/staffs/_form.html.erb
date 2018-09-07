@@ -1,0 +1,11 @@
+<%= simple_form_for(@staff) do |f| %>
+   <%= f.input :name %>
+   <%= f.input :position %>
+   <%= f.association :company %>
+   <%= f.input :email %>
+   <%= f.input :phone %>
+   <%= f.input :password %>
+   <%= f.button :submit %>
+<% end %>
+
+

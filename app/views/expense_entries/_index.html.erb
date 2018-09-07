@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Localhost Claims</h1>
+<div class="text-right">
+<%= link_to 'Add Expense', add_expense_user_monthly_approval_path(@user_monthly_approval) %>
+</div>
+<div class='card'>
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center">
+		  <thead>
+			<tr>
+			  <th>Created</th>
+			  <th>Description</th>
+			  <th>Total (RM)</th>
+			  <th>Travel distance</th>
+			  <th> Travel Fare</th>
+			  <th>Food price</th>
+			  <th>Parking price</th>
+			  <th>Toll price</th>
+			  <th>Fixed asset price</th>
+			  <th>Misc price</th>
+			  <% unless current_admin %>
+				<th>Actions</th>
+			  <%end%>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% price=0 %>
+			<% @expense_entries.each do |expense_entry| %>
+			  <tr>
+				<td><%= best_in_place expense_entry, :created, as: :date%></td>
+				<td><%= best_in_place expense_entry, :description %></td>
+				<td><%= number_to_currency(expense_entry.total_expenses,unit: "RM") %></td>
+				<td><%= best_in_place expense_entry, :travel_distance, :display_as => :travel_distance_unit %></td>
+				<td><%= number_to_currency(expense_entry.travel_fare.round(2),unit: "RM") %></td>
+				<td><%= best_in_place expense_entry, :food_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place expense_entry, :parking_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"}%></td>
+				<td><%= best_in_place expense_entry, :toll_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place expense_entry, :fixed_asset_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place expense_entry, :misc_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<% unless current_admin %>
+					<td><%= link_to 'Destroy', expense_entry_path(expense_entry, user_monthly_approval_id: @user_monthly_approval.id), method: :delete, data: { confirm: 'Are you sure?' },class: "btn" %></td>
+				
+				<%end%>
+				<% price+= expense_entry.total_expenses %>
+			  </tr>
+			<% end %>
+		  </tbody>
+		  <tfooter>
+			<tr>
+				<td colspan=""></td>
+				<td>Grand Total (RM)</td>
+				<td><%= @user_monthly_approval.grand_total ? number_to_currency(@user_monthly_approval.grand_total.round(2),unit: "RM") : 0.0 %></td>
+				<td colspan=""></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price}.sum.round(2),unit: "RM") %></td>
+				<% unless current_admin %>
+					<td colspan=""></td>
+				<% end %>
+			</tr>
+		  </tfooter>
+		</table>
+		
+	</div>
+</div>
+
+<%= link_to 'Recalculate', user_monthly_approval_path ,class: "btn" %>
+
+<br>
+
+<script type="text/javascript">
+
+</script>

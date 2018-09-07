@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expense Entries</h1>
+<tr><div class="text-right">
+<%= link_to 'Add Expense', add_expense_user_monthly_approval_path(@user_monthly_approval) %>
+<%= link_to 'Accept', update_accept_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
+</div></tr>
+<div class='card'>
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center">
+		  <thead>
+			<tr>
+			  <th>Created</th>
+			  <th>Description</th>
+			  <th>Total (RM)</th>
+			  <th>Travel distance</th>
+			  <th> Travel Fare</th>
+			  <th>Food price</th>
+			  <th>Parking price</th>
+			  <th>Toll price</th>
+			  <th>Fixed asset price</th>
+			  <th>Misc price</th>
+			  <th>Actions</th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% price=0 %>
+			<% @expense_entries.each do |expense_entry| %>
+			  <tr>
+				<td><%= best_in_place expense_entry, :created, as: :date%></td>
+				<td><%= best_in_place expense_entry, :description %></td>
+				<td><%= expense_entry.total_expenses %></td>
+				<td><%= best_in_place expense_entry, :travel_distance %></td>
+				<td><%= expense_entry.travel_fare %></td>
+				<td><%= best_in_place expense_entry, :food_price %></td>
+				<td><%= best_in_place expense_entry, :parking_price%></td>
+				<td><%= best_in_place expense_entry, :toll_price %></td>
+				<td><%= best_in_place expense_entry, :fixed_asset_price %></td>
+				<td><%= best_in_place expense_entry, :misc_price %></td>
+				<td><%= link_to 'Destroy', expense_entry_path(expense_entry, user_monthly_approval_id: @user_monthly_approval.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<% price+= expense_entry.total_expenses %>
+			  </tr>
+			<% end %>
+		  </tbody>
+		  <tfooter>
+			<tr>
+				<td colspan=""></td>
+				<td>Grand Total (RM)</td>
+				<td><%= @user_monthly_approval.grand_total ? @user_monthly_approval.grand_total.round(2) : 0.0 %></td>
+				<td colspan=""></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.travel_fare}.sum %></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.food_price}.sum %></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.parking_price}.sum %></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.toll_price}.sum %></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price}.sum %></td>
+				<td><%= @user_monthly_approval.expense_entries.map{|x| x.misc_price}.sum %></td>
+				<td colspan=""></td>
+			</tr>
+		  </tfooter>
+		</table>
+		
+	</div>
+</div>
+
+<%= link_to 'Recalculate', user_monthly_approval_path ,class: "btn" %>
+
+<br>
+
+<script type="text/javascript">
+
+</script>

@@ -1,0 +1,5 @@
+<%if current_admin %>
+	<%= render 'expense_entries/admin' %>
+<% else %>
+	<%= render 'expense_entries/staff' %>
+<% end %>

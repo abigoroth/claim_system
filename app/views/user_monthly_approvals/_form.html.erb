@@ -1,0 +1,53 @@
+<%= form_with(model: user_monthly_approval, local: true, :html => { :class => "myform" }) do |form| %>
+  <% if user_monthly_approval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_monthly_approval.errors.count, "error") %> prohibited this user_monthly_approval from being saved:</h2>
+
+      <ul>
+      <% user_monthly_approval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>`
+  <% end %>
+
+  <div class="card">
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center" 
+			 <thead>
+				<tr>
+					<th>Created At </th>
+					<th>Description</th>
+					<th>Travel Distance</th>
+					<th>Travel Price</th>
+					<th>Food Price</th>
+					<th>Parking Price</th>
+					<th>Toll Price</th>
+					<th>Fixd Asset Price</th>
+					<th>Misc Price</th>
+					<th>Actions</th>
+				</tr>
+			 </thead>
+	  
+			 <tbody id="expense_entries" class="expense_entry">
+				<%= form.simple_fields_for :expense_entries do |expense_entry| %>
+				  <%= render 'expense_entry_fields', f: expense_entry %>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+	
+    <div class="links">
+      <%= link_to_add_association form, :expense_entries, data: {"association-insertion-node" => "#expense_entries", "association-insertion-method" => "append"} do  %>
+	  <i class="fa fa-plus-circle" style="font-size:24px"></i>
+	  <%end%>
+	</div>
+	
+	
+	
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

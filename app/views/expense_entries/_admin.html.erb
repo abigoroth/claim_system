@@ -1,0 +1,37 @@
+<h1>Admin</h1>
+<%= simple_form_for :search, method: :get do |f| %>
+<%= f.input :month, collection: [['January','01'],['Febuary','02'],['march','03'],['April','04'],['May','05'],['June','06'],['July','07'],['August','08'],['September','09'],['October','10'],['November','11'],['December','12']], include_blank: true %>
+<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
+<%= f.submit %>
+<%end%>
+
+<br><br>
+<div class="card">
+	<table class="table table-bordered table-responsive-md table-striped text-center">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Date</th>
+				<th>Name</th>
+				<th>Total Claim (RM)</th>
+				<th>Status</th>
+				<th>Action</th>	
+			</tr>
+		</thead>
+		<tbody>
+		<%- @user_monthly_approvals.where("status like 'Submitted' or status like 'Accepted' ").each_with_index do |uma,idx| %>
+			<tr>
+				<td>
+					<%= idx+1 %>
+				</td>
+				<td><%= uma.created.strftime("%B %Y") %></td>
+				<td><%= uma.staff.name %></td>
+				<td><%= number_to_currency(uma.grand_total,unit: "RM") %></td>
+				<td><%= uma.status %></td>
+				<td><%= link_to 'Go', user_monthly_approval_path(uma) ,class: "btn"%></td>
+			</tr>
+			<% end %>
+		</tbody>
+						
+	</table>
+</div>

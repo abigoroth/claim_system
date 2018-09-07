@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expense Entries</h1>
+<div class='card'>
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center">
+		  <thead>
+			<tr>
+			  <th>Created</th>
+			  <th>Description</th>
+			  <th>Travel distance</th>
+			  <th>Travel price</th>
+			  <th>Food price</th>
+			  <th>Parking price</th>
+			  <th>Toll price</th>
+			  <th>Fixed asset price</th>
+			  <th>Misc price</th>
+			  <th colspan="3">Actions</th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @expense_entries.each do |expense_entry| %>
+			  <tr>
+				<td><%= expense_entry.created %></td>
+				<td><%= expense_entry.description %></td>
+				<td><%= expense_entry.travel_distance %></td>
+				<td><%= expense_entry.travel_price %></td>
+				<td><%= expense_entry.food_price %></td>
+				<td><%= expense_entry.parking_price %></td>
+				<td><%= expense_entry.toll_price %></td>
+				<td><%= expense_entry.fixed_asset_price %></td>
+				<td><%= expense_entry.misc_price %></td>
+				<td><%= link_to 'Show', expense_entry %></td>
+				<td><%= link_to 'Edit', edit_expense_entry_path(expense_entry) %></td>
+				<td><%= link_to 'Destroy', expense_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<br>
+
+<%= link_to 'New Expense Entry', new_expense_entry_path %>

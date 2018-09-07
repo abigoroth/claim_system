@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created: 2018-08-09
+  description: MyText
+  travel_distance: 9.99
+  travel_price: 9.99
+  food_price: 9.99
+  parking_price: 9.99
+  toll_price: 9.99
+  fixed_asset_price: 9.99
+  misc_price: 9.99
+
+two:
+  created: 2018-08-09
+  description: MyText
+  travel_distance: 9.99
+  travel_price: 9.99
+  food_price: 9.99
+  parking_price: 9.99
+  toll_price: 9.99
+  fixed_asset_price: 9.99
+  misc_price: 9.99

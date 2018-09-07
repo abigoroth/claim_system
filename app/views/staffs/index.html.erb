@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Staffs</h1>
+
+<div class="card">
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center">
+		  <thead>
+			<tr>
+			  <th class="text-center">Name</th>
+			  <th>Position</th>
+			  <th>Company</th>
+			  <th>Email</th>
+			  <th>Phone</th>
+			  <th colspan="2" , width="30%">Action</th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @staffs.each do |staff| %>
+			  <tr>
+				<td><%= staff.name %></td>
+				<td><%= staff.position %></td>
+				<td><%= staff.company.name %></td>
+				<td><%= staff.email %></td>
+				<td><%= staff.phone %></td>
+				<td><%= link_to 'Edit', edit_staff_path(staff),class: "btn" %></td>
+				<td><%= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' },class: "btn"%></td>
+				
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<br>
+
+<%= link_to 'New Staff', new_staff_path %>

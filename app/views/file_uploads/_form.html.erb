@@ -1,0 +1,13 @@
+<br><br><br>
+<%= simple_form_for(@file_upload) do |f| %>
+  
+  <div class="field">
+	<%= f.input :upload_document, as: :file, label: 'Upload attachments for claim'  %>
+  </div>
+  
+  <%= f.hidden_field :user_monthly_approval_id %>
+  
+  <div class="form-actions">
+    <%= f.button :submit, 'Upload!' %>
+  </div>
+<% end %>

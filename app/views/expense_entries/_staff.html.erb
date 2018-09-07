@@ -1,0 +1,54 @@
+<h1>User Monthly Approvals</h1>
+
+<!-- method get
+	#url sama dgn button new yg bawah tu-->
+	<%= simple_form_for :search, method: :get do |f| %>
+	<%= params[:search] %>
+	<% if !params[:search] %>
+		<%= f.input :month, collection: month_dropdown, include_blank: true %>
+		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
+	<% else %>
+		<%= params[:search][:month] %>
+		<%= f.input :month, collection: month_dropdown, include_blank: true, selected: params[:search][:month] %>
+		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true, selected: params[:search][:year] %>
+	<% end %>
+	<%= f.submit %>
+	<% end %>
+
+<div class="card">
+	<div id="table" class="table-editable">
+		<table class="table table-bordered table-responsive-md table-striped text-center">
+		  <thead>
+			<tr>
+			  <th>Created</th>
+			  <th>Date</th>
+			  <th>Status</th>
+			  <th colspan="3" , width="30%">Action</th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+			<% @user_monthly_approvals.each do |user_monthly_approval| %>
+			  <tr>
+				<td><%= user_monthly_approval.created_at.strftime("%-d %B %Y") %></td>
+				<td><%= user_monthly_approval.created.strftime("%B %Y") %></td>
+				<td><%= user_monthly_approval.status %></td>
+				<td><%= link_to 'Show', user_monthly_approval ,class: "btn"%></td>
+				<% unless user_monthly_approval.status == 'Submitted' or user_monthly_approval.status == 'Accepted' %>
+					<td><%= link_to 'Destroy', user_monthly_approval, method: :delete, data: { confirm: 'Are you sure?' },class: "btn" %></td>
+				<% else %>
+					<td colspan=""></td>
+				<% end %>
+				
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+<br>
+<%if current_admin %>
+ = current_admin.name
+<%end%>
+<% params[:search].permit! if params[:search] %>
+<%= link_to 'Create new claim', new_user_monthly_approval_path(params[:search]) %>
