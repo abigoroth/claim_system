@@ -6,13 +6,12 @@ ruby '2.5.1'
 gem 'jquery-ui-rails'
 gem 'best_in_place'
 gem 'carrierwave'
-gem 'sqlite3'
 #for authentication
 gem 'devise'
 #help with powerful components to create your forms
 gem 'simple_form'
 #install bootstrap
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'cocoon'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -27,7 +26,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
+gem 'therubyracer'
+gem 'autoprefixer-rails', '8.6.5'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

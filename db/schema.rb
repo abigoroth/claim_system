@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_100142) do
+ActiveRecord::Schema.define(version: 2018_09_04_092315) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_09_04_100142) do
     t.date "created"
     t.text "description"
     t.decimal "travel_distance"
+    t.decimal "food_price", default: "0.0"
     t.decimal "parking_price", default: "0.0"
     t.decimal "toll_price", default: "0.0"
     t.decimal "fixed_asset_price", default: "0.0"
@@ -32,7 +33,6 @@ ActiveRecord::Schema.define(version: 2018_09_04_100142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_monthly_approval_id"
-    t.decimal "food_price", default: "0.0"
   end
 
   create_table "file_uploads", force: :cascade do |t|
