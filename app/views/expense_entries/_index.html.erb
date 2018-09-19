@@ -24,21 +24,22 @@
 			  <%end%>
 			</tr>
 		  </thead>
-
+		  <%- if policy(@user_monthly_approval).edit? %>
+		  <%end%>
 		  <tbody>
 			<% price=0 %>
 			<% @expense_entries.each do |expense_entry| %>
 			  <tr>
-				<td><%= best_in_place expense_entry, :created, as: :date%></td>
-				<td><%= best_in_place expense_entry, :description %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :created, as: :date%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :description %></td>
 				<td><%= number_to_currency(expense_entry.total_expenses,unit: "RM") %></td>
-				<td><%= best_in_place expense_entry, :travel_distance, :display_as => :travel_distance_unit %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :travel_distance, :display_as => :travel_distance_unit %></td>
 				<td><%= number_to_currency(expense_entry.travel_fare.round(2),unit: "RM") %></td>
-				<td><%= best_in_place expense_entry, :food_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place expense_entry, :parking_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"}%></td>
-				<td><%= best_in_place expense_entry, :toll_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place expense_entry, :fixed_asset_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place expense_entry, :misc_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :food_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :parking_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"}%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :toll_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :fixed_asset_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :misc_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
 				<% unless current_admin %>
 					<td><%= link_to 'Destroy', expense_entry_path(expense_entry, user_monthly_approval_id: @user_monthly_approval.id), method: :delete, data: { confirm: 'Are you sure?' },class: "btn" %></td>
 				

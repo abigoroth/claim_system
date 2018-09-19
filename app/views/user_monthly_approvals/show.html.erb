@@ -26,12 +26,13 @@
 		<%= link_to 'Rejected', update_reject_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
     <%end%>
 </p>
+<% unless @user_monthly_approval.status == 'Submitted' && !policy(@user_monthly_approval).user_claim? %>
+  <%= link_to 'Submit', update_status_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
+<% end %>
 
 <%= render 'expense_entries/index' %>
 <%= render partial: 'file_uploads/form', locals: { file_upload: @file_upload } %>
 <%= render partial: 'file_uploads/show', locals: { file_upload: @file_upload } %>
 
-<% unless @user_monthly_approval.status == 'Submitted' %>
-	<%= link_to 'Submit', update_status_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
-<% end %>
+<!--
 <%= link_to 'Back', claims_path %>
