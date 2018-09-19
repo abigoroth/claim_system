@@ -1,5 +1,6 @@
 class UserMonthlyApprovalsController < ApplicationController
-  before_action :set_user_monthly_approval, only: [:show, :add_expense, :edit, :update, :destroy, :update_status, :update_accept, :update_reject]
+  before_action :set_user_monthly_approval, only: [:show, :add_expense, :edit, :update, :destroy, :update_status, :update_accept,:print_claim, :update_reject]
+
 
   # GET /user_monthly_approvals
   # GET /user_monthly_approvals.json
@@ -17,6 +18,14 @@ class UserMonthlyApprovalsController < ApplicationController
 	#Rails.logger.debug("Total Expense#{total}")
 	#@user_monthly_approval.update_attributes(grand_total: total)
 	
+  end
+  def print_claim
+    respond_to do |format|
+      format.html { render layout: 'pdf' }
+      format.pdf do
+        render pdf: "print_claim", template: 'user_monthly_approvals/print_claim', layout: 'pdf', footer: { left: '[page] of [topage]'}   # Excluding ".pdf" extension.
+      end
+    end
   end
   
   def add_expense
