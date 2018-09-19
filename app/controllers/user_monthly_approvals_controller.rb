@@ -43,9 +43,9 @@ class UserMonthlyApprovalsController < ApplicationController
   # GET /user_monthly_approvals/new
   def new
 	if params[:month] and params[:year]
-		@user_monthly_approval = UserMonthlyApproval.find_or_create_by(staff_id: current_staff.id ,created: "1-#{params[:month]}-#{params[:year]}")
+		@user_monthly_approval = UserMonthlyApproval.find_or_create_by(staff_id: current_staff.id ,created: "1-#{params[:month]}-#{params[:year]}", status: "Draft")
 	else
-		@user_monthly_approval = UserMonthlyApproval.find_or_create_by(staff_id: current_staff.id ,created: "1-#{Time.now.month}-#{Time.now.year}")
+		@user_monthly_approval = UserMonthlyApproval.find_or_create_by(staff_id: current_staff.id ,created: "1-#{Time.now.month}-#{Time.now.year}", status: "Draft")
 	end
 	if @user_monthly_approval.expense_entries.empty?
 		5.times.each do
