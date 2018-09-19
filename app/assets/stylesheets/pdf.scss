@@ -1,0 +1,158 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  /* this affects the margin on the content before sending to printer */
+  margin: 0;
+}
+
+.screen-visible {
+  display: none;
+}
+
+table,
+td,
+th,
+tr {
+  border: none !important;
+}
+
+.panel-body {
+  border-top: 1px solid #e5e5e5 !important;
+}
+
+.panel.panel-default-award {
+  border-color: #e5e5e5 !important;
+}
+
+.panel.panel-default-reject {
+  border-color: #e5e5e5 !important;
+}
+
+.table-bordered,
+.table-bordered tbody,
+.table-bordered td,
+.table-bordered th,
+.table-bordered tr {
+  border: 0.5px solid #e5e5e5 !important;
+}
+
+.table-non-bordered,
+.table-non-bordered tr,
+.table-none-bordered td,
+.table-none-bordered th {
+  border: none !important;
+}
+
+.col-print-1 {
+  width: 8%;
+  float: left;
+}
+
+.col-print-2 {
+  width: 16%;
+  float: left;
+}
+
+.col-print-3 {
+  width: 25%;
+  float: left;
+}
+
+.col-print-4 {
+  width: 33%;
+  float: left;
+}
+
+.col-print-5 {
+  width: 42%;
+  float: left;
+}
+
+.col-print-6 {
+  width: 50%;
+  float: left;
+}
+
+.col-print-7 {
+  width: 58%;
+  float: left;
+}
+
+.col-print-8 {
+  width: 66%;
+  float: left;
+}
+
+.col-print-9 {
+  width: 75%;
+  float: left;
+}
+
+.col-print-10 {
+  width: 83%;
+  float: left;
+}
+
+.col-print-11 {
+  width: 92%;
+  float: left;
+}
+
+.col-print-12 {
+  width: 100%;
+  float: left;
+}
+
+.clearfix-print {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.panel-print {
+  border: none !important;
+  border-top: none !important;
+  font-size: 12px;
+}
+
+.panel-print-border {
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 0;
+  border-top: 1px solid #e5e5e5 !important;
+  font-size: 12px;
+  box-shadow: none !important;
+}
+
+.panel-body {
+  border: none !important;
+}
+
+.page-2,
+.page-3 {
+  page-break-after: always;
+}
+
+img {
+  width: 150px;
+}
+
+.black-col {
+  background: black;
+  color: white;
+}
+
+.left {
+  //position: relative;
+  float: left;
+  width: 50%;
+}
+
+dd {
+  width: 50%;
+  padding-left: 15px;
+  display: inline-block;
+}
+
+a[href]:after {
+    content: none !important;
+}

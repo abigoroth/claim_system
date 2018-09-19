@@ -20,6 +20,7 @@ class UserMonthlyApprovalsController < ApplicationController
 	
   end
   def print_claim
+    @expense_entries = @user_monthly_approval.expense_entries
     respond_to do |format|
       format.html { render layout: 'pdf' }
       format.pdf do

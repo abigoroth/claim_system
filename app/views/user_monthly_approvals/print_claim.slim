@@ -1,0 +1,86 @@
+p
+  strong
+    | Staff :
+  = @user_monthly_approval.staff.name
+p
+  strong
+    | Company :
+  = @user_monthly_approval.staff.company.name
+p
+  strong
+    | Created :
+  = @user_monthly_approval.created
+p
+  strong
+    | Status :
+  = @user_monthly_approval.status
+
+table.table.table-bordered.text-center style="border:1px solid black"
+  thead
+    tr
+      th
+        | Created
+      th
+        | Description
+      th
+        | Total (RM)
+      th
+        | Travel distance
+      th
+        |  Travel Fare
+      th
+        | Food price
+      th
+        | Parking price
+      th
+        | Toll price
+      th
+        | Fixed asset price
+      th
+        | Misc price
+  tbody
+    - price=0
+    - @expense_entries.each do |expense_entry|
+      tr
+        td
+          = expense_entry.created_at.strftime("%d/%m/%Y")
+        td
+          = expense_entry.description
+        td
+          = number_to_currency(expense_entry.total_expenses,unit: "RM")
+        td
+          = expense_entry.travel_distance
+        td
+          = number_to_currency(expense_entry.travel_fare.round(2),unit: "RM")
+        td
+          = expense_entry.food_price
+        td
+          = expense_entry.parking_price
+        td
+          = expense_entry.toll_price
+        td
+          = expense_entry.fixed_asset_price
+        td
+          = expense_entry.misc_price
+        - price+= expense_entry.total_expenses
+  tfooter
+    tr
+      td[colspan=""]
+      td
+        | Grand Total (RM)
+      td
+        = @user_monthly_approval.grand_total ? number_to_currency(@user_monthly_approval.grand_total.round(2),unit: "RM") : 0.0
+      td[colspan=""]
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare}.sum.round(2),unit: "RM")
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price}.sum.round(2),unit: "RM")
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price}.sum.round(2),unit: "RM")
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price}.sum.round(2),unit: "RM")
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price}.sum.round(2),unit: "RM")
+      td
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price}.sum.round(2),unit: "RM")
+      
