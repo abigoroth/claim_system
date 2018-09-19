@@ -1,5 +1,6 @@
 class UserMonthlyApprovalsController < ApplicationController
-  before_action :set_user_monthly_approval, only: [:show, :add_expense, :edit, :update, :destroy, :update_status, :update_accept,:print_claim]
+  before_action :set_user_monthly_approval, only: [:show, :add_expense, :edit, :update, :destroy, :update_status, :update_accept,:print_claim, :update_reject]
+
 
   # GET /user_monthly_approvals
   # GET /user_monthly_approvals.json
