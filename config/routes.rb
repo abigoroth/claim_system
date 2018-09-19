@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 	get :update_status
 	get :update_accept
 	get :update_reject
+  get :print_claim
   end
   end
   resources :admins
