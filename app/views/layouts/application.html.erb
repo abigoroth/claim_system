@@ -12,17 +12,7 @@
   </head>
 
   <body>
-    <div class="container">
-		<% if notice %>
-		  <p class="alert alert-success"><%= notice %></p>
-		<% end %>
-		<% if alert %>
-		  <p class="alert alert-danger"><%= alert %></p>
-		<% end %>
-		<%= yield %>
-	</div>
-	
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	  <div class="container">
 		<div class="navbar-header">
 			<a href = "" class="navbar-left"><img src="http://www.localhost.my/_/rsrc/1297038463259/config/customLogo.gif?revision=1" width = "200px"></a>
@@ -50,7 +40,18 @@
 			</p>
 		</div>
 	  </div>
-	</nav>	
+	</nav>
+    <div class="container">
+		<% if notice %>
+		  <p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+		  <p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+		<%= yield %>
+	</div>
+	
+		
   </body>
   <footer>
 	  <div class="container">
