@@ -23,7 +23,7 @@
 	<% if current_admin %>
 		<strong>Action :</strong>
 		<%= link_to 'Accepted', update_accept_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
-		<%= link_to 'Rejected', update_accept_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
+		<%= link_to 'Rejected', update_reject_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
     <%end%>
 </p>
 
