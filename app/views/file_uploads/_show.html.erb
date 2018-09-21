@@ -4,21 +4,21 @@
 <% if @file_uploads.pluck(:upload_document).empty? %>
 <% else %>
 	<p><strong>Upload files:</strong><br>
+	<table class="table table-default">
+		<tr>
+			<td>File</td>
+			<td>File Type</td>
+		</tr>
 	<% @file_uploads.each do |file_upload| %>
 		<% unless file_upload.id.nil? %>
-			<% if file_upload.upload_document.content_type =~ /pdf/i %>
-				<%= link_to file_upload.upload_document_url, target: '_blank' do  %>
-					<i class="fa fa-file-pdf-o" style="font-size:50px"></i><br>
-					<p><%= link_to 'Delete', file_upload, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn", style: "width: 100%" %></p>
-				<%end%>
-			<%else%>
-				<%= link_to image_tag(file_upload.upload_document_url, width: 1150) if file_upload.upload_document.present? %><br>
-				<%= file_upload.upload_document.content_type %><br>
-				<p><%= link_to 'Delete', file_upload, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn", style: "width: 100%" %></p>
-			<%end%>
-		<%end%>
-		<p><%#= link_to 'Delete', file_upload, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn" %></p>
-	<% end %>
+			<tr>
+				<td><%= link_to file_upload.upload_document_identifier, file_upload.upload_document_url, target: '_blank'%></td>
+				<td><%= file_upload.upload_document.content_type%></td>
+			</tr>
+
+		<% end %>
+	<%end%>
+</table>
 <% end %>
 </p>
 

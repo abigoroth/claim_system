@@ -55,7 +55,7 @@ table.table.table-bordered.text-center style="border:1px solid black"
         td
           = expense_entry.food_price
         td
-          = expense_entry.parking_price
+          = expense_entry.parking_price == 0   ? expense_entry.parking_price : "-"
         td
           = expense_entry.toll_price
         td

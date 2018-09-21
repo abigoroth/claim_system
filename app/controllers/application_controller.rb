@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 	def pundit_user
 		current_staff
 	end
+
 	
 	protected
 	def current_admin
