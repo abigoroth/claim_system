@@ -31,15 +31,15 @@
 			<% @expense_entries.each do |expense_entry| %>
 			  <tr>
 				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :created, as: :date%></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :description %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :description, as: :input%></td>
 				<td><%= number_to_currency(expense_entry.total_expenses,unit: "RM") %></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :travel_distance, :display_as => :travel_distance_unit %></td>
-				<td><%= number_to_currency(expense_entry.travel_fare.round(2),unit: "RM") %></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :food_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :parking_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"}%></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :toll_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :fixed_asset_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
-				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :misc_price, :display_with => :number_to_currency, :helper_options => {:unit => "RM"} %></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :travel_distance, as: :input%></td>
+				<td><%= number_to_currency(expense_entry.travel_fare.round(2),unit: "RM") if expense_entry.travel_fare%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :food_price, as: :input%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :parking_price, as: :input%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :toll_price, as: :input%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :fixed_asset_price, as: :input%></td>
+				<td><%= best_in_place_if policy(@user_monthly_approval).edit?, expense_entry, :misc_price%></td>
 				<% unless current_admin %>
 					<td><%= link_to 'Destroy', expense_entry_path(expense_entry, user_monthly_approval_id: @user_monthly_approval.id), method: :delete, data: { confirm: 'Are you sure?' },class: "btn" %></td>
 				
@@ -54,12 +54,12 @@
 				<td>Grand Total (RM)</td>
 				<td><%= @user_monthly_approval.grand_total ? number_to_currency(@user_monthly_approval.grand_total.round(2),unit: "RM") : 0.0 %></td>
 				<td colspan=""></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare}.sum.round(2),unit: "RM") %></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price}.sum.round(2),unit: "RM") %></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price}.sum.round(2),unit: "RM") %></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price}.sum.round(2),unit: "RM") %></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price}.sum.round(2),unit: "RM") %></td>
-				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare ? x.travel_fare : 0}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price ? x.food_price : 0}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price ? x.parking_price : 0}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price ? x.toll_price : 0}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price ? x.fixed_asset_price : 0}.sum.round(2),unit: "RM") %></td>
+				<td><%= number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price ? x.misc_price : 0}.sum.round(2),unit: "RM") %></td>
 				<% unless current_admin %>
 					<td colspan=""></td>
 				<% end %>
@@ -70,7 +70,7 @@
 	</div>
 </div>
 
-<%= link_to 'Recalculate', user_monthly_approval_path ,class: "btn" %>
+<%= link_to 'Re-Calculate', user_monthly_approval_path ,class: "btn" %>
 
 <br>
 

@@ -2,7 +2,7 @@
 <%= simple_form_for :search, method: :get do |f| %>
 <%= f.input :month, collection: [['January','01'],['Febuary','02'],['march','03'],['April','04'],['May','05'],['June','06'],['July','07'],['August','08'],['September','09'],['October','10'],['November','11'],['December','12']], include_blank: true %>
 <%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
-<%= f.submit %>
+<%= f.submit " SEARCH" %>
 <%end%>
 
 <br><br>

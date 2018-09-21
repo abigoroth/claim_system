@@ -3,18 +3,22 @@
 <!-- method get
 	#url sama dgn button new yg bawah tu-->
 	<%= simple_form_for :search, method: :get do |f| %>
-	<%= params[:search] %>
+	
 	<% if !params[:search] %>
 		<%= f.input :month, collection: month_dropdown, include_blank: true %>
 		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
 	<% else %>
-		<%= params[:search][:month] %>
+		
 		<%= f.input :month, collection: month_dropdown, include_blank: true, selected: params[:search][:month] %>
-		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true, selected: params[:search][:year] %>
+		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true,
+		 selected: params[:search][:year] %>
+	<br>
+	<br>
 	<% end %>
-	<%= f.submit %>
+	<%= f.submit "SEARCH" %>
 	<% end %>
-
+	<br>
+	<br>
 <div class="card">
 	<div id="table" class="table-editable">
 		<table class="table table-bordered table-responsive-md table-striped text-center">
@@ -48,7 +52,6 @@
 </div>
 <br>
 <%if current_admin %>
- = current_admin.name
 <%end%>
 <% params[:search].permit! if params[:search] %>
 <%= link_to 'Create new claim', new_user_monthly_approval_path(params[:search]) %>

@@ -29,7 +29,7 @@
 			<% @expense_entries.each do |expense_entry| %>
 			  <tr>
 				<td><%= best_in_place expense_entry, :created, as: :date%></td>
-				<td><%= best_in_place expense_entry, :description %></td>
+				<td><%= best_in_place expense_entry, :description, :textarea %></td>
 				<td><%= expense_entry.total_expenses %></td>
 				<td><%= best_in_place expense_entry, :travel_distance %></td>
 				<td><%= expense_entry.travel_fare %></td>
@@ -63,7 +63,7 @@
 	</div>
 </div>
 
-<%= link_to 'Recalculate', user_monthly_approval_path ,class: "btn" %>
+<%= link_to 'Re-Calculate', user_monthly_approval_path ,class: "btn" %>
 
 <br>
 

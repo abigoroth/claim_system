@@ -55,7 +55,7 @@ table.table.table-bordered.text-center style="border:1px solid black"
         td
           = expense_entry.food_price
         td
-          = expense_entry.parking_price == 0   ? expense_entry.parking_price : "-"
+          = expense_entry.parking_price == 0 ? expense_entry.parking_price : "-"
         td
           = expense_entry.toll_price
         td
@@ -72,15 +72,15 @@ table.table.table-bordered.text-center style="border:1px solid black"
         = @user_monthly_approval.grand_total ? number_to_currency(@user_monthly_approval.grand_total.round(2),unit: "RM") : 0.0
       td[colspan=""]
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.travel_fare.present? ? x.travel_fare : 0.0}.sum.round(2),unit: "RM") 
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.food_price.present? ? x.food_price : 0.0}.sum.round(2),unit: "RM")
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.parking_price.present? ? x.parking_price : 0.0}.sum.round(2),unit: "RM")
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.toll_price.present? ? x.toll_price : 0.0}.sum.round(2),unit: "RM")
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.fixed_asset_price.present? ? x.fixed_asset_price : 0.0}.sum.round(2),unit: "RM")
       td
-        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price}.sum.round(2),unit: "RM")
+        = number_to_currency(@user_monthly_approval.expense_entries.map{|x| x.misc_price.present? ? x.misc_price : 0.0}.sum.round(2),unit: "RM")
       
