@@ -1,4 +1,5 @@
-<%= link_to "Print",print_claim_user_monthly_approval_path(@user_monthly_approval, format: 'pdf'), class: "btn"  %>
+<%= link_to "Print",print_claim_user_monthly_approval_path(@user_monthly_approval, format: 'pdf'), target: '_blank', class: "btn"  %>
+
 <p>
   <strong>Staff :</strong>
   <%= @user_monthly_approval.staff.name %>
