@@ -17,6 +17,8 @@ gem 'cocoon'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'slim-rails'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record

@@ -4,17 +4,8 @@
 	#url sama dgn button new yg bawah tu-->
 	<%= simple_form_for :search, method: :get do |f| %>
 	
-	<% if !params[:search] %>
-		<%= f.input :month, collection: month_dropdown, include_blank: true %>
-		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
-	<% else %>
-		
-		<%= f.input :month, collection: month_dropdown, include_blank: true, selected: params[:search][:month] %>
-		<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true,
-		 selected: params[:search][:year] %>
-	<br>
-	<br>
-	<% end %>
+	<%= f.input :date_query, input_html:{class: 'datepicker'} %>
+	
 	<%= f.submit "SEARCH" %>
 	<% end %>
 	<br>
@@ -55,3 +46,9 @@
 <%end%>
 <% params[:search].permit! if params[:search] %>
 <%= link_to 'Create new claim', new_user_monthly_approval_path(params[:search]) %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

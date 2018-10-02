@@ -1,8 +1,7 @@
 <h1>Admin</h1>
 <%= simple_form_for :search, method: :get do |f| %>
-<%= f.input :month, collection: [['January','01'],['Febuary','02'],['march','03'],['April','04'],['May','05'],['June','06'],['July','07'],['August','08'],['September','09'],['October','10'],['November','11'],['December','12']], include_blank: true %>
-<%= f.input :year, collection: (Time.now.year-7..Time.now.year).to_a.reverse, include_blank: true %>
-<%= f.submit " SEARCH" %>
+<%= f.input :date_query, as: :date, input_html:{class: "datepicker"} %>
+<%= f.submit " SEARCH" , class: "btn"%>
 <%end%>
 
 <br><br>
@@ -28,10 +27,16 @@
 				<td><%= uma.staff.name %></td>
 				<td><%= number_to_currency(uma.grand_total,unit: "RM") %></td>
 				<td><%= uma.status %></td>
-				<td><%= link_to 'Go', user_monthly_approval_path(uma) ,class: "btn"%></td>
+				<td><%= link_to 'CHECK', user_monthly_approval_path(uma) ,class: "btn"%></td>
 			</tr>
 			<% end %>
 		</tbody>
 						
 	</table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

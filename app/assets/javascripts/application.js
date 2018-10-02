@@ -16,6 +16,7 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require cocoon
 //= require best_in_place
 
