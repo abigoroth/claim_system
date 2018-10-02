@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/Nerian/bootstrap-datepicker-rails.git
+  revision: f24acb730bb5cf3c0367b73b2fba1e697aefe261
+  specs:
+    bootstrap-datepicker-rails (1.8.0.1)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,6 +104,8 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -257,6 +266,7 @@ DEPENDENCIES
   autoprefixer-rails (= 8.6.5)
   best_in_place
   bootsnap (>= 1.1.0)
+  bootstrap-datepicker-rails!
   bootstrap-sass (~> 3.3.7)
   byebug
   capybara (>= 2.15)
@@ -265,6 +275,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails
