@@ -34,6 +34,7 @@
 <% end %>
 
 <%= render 'expense_entries/index' %>
+
 <% if policy(@user_monthly_approval).user_claim? %>
     <% if !current_admin %>
 
