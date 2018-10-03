@@ -2,8 +2,9 @@
 
 <h1>Localhost Claims</h1>
 <div class="text-right">
+	<% Rails.logger.debug("User Claim######{policy(@user_monthly_approval).user_claim?}") %>
 <% if policy(@user_monthly_approval).user_claim? %>
-<%= link_to 'Add Expense', add_expense_user_monthly_approval_path(@user_monthly_approval) %>
+		<%= link_to 'Add Expense', add_expense_user_monthly_approval_path(@user_monthly_approval) %>
 <%end%>
 </div>
 <div class='card'>
@@ -11,7 +12,7 @@
 		<table class="table table-bordered table-responsive-md table-striped text-center">
 		  <thead>
 			<tr>
-			  <th>Created</th>
+			  <th>Create</th>
 			  <th>Description</th>
 			  <th>Total (RM)</th>
 			  <th>Travel distance</th>
@@ -72,7 +73,9 @@
 	</div>
 </div>
 <% if policy(@user_monthly_approval).user_claim? %>
-<%= link_to 'Re-Calculate', user_monthly_approval_path ,class: "btn" %>
+ 		<% if !current_admin %>
+		<%= link_to 'Re-Calculate', user_monthly_approval_path ,class: "btn" %>
+		<%end%>
 <%end%>
 <br>
 

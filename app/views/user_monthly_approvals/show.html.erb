@@ -35,8 +35,12 @@
 
 <%= render 'expense_entries/index' %>
 <% if policy(@user_monthly_approval).user_claim? %>
-<%= render partial: 'file_uploads/form', locals: { file_upload: @file_upload } %>
+    <% if !current_admin %>
+
+    <%= render partial: 'file_uploads/form', locals: { file_upload: @file_upload } %>
+    <%end%>
 <%end%>
+
 <%= render partial: 'file_uploads/show', locals: { file_upload: @file_upload } %>
 
 <!--

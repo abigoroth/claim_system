@@ -4,6 +4,9 @@ class UserMonthlyApprovalPolicy < ApplicationPolicy
   end
 
   def user_claim?
-  	user == record.staff_id
+  	Rails.logger.debug("USER POLICY CLAIM#{user.inspect}")
+  	Rails.logger.debug("USER POLICY CLAIM RECORD#{record.inspect}")
+  	Rails.logger.debug("USER POLICY CLAIM RECORD#{record.staff_id == user.id}")
+  	user == record.staff
   end
 end
