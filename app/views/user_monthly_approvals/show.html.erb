@@ -21,14 +21,16 @@
 </p>
 
 <p>
-	<% if current_admin %>
+	<% if current_admin && @user_monthly_approval.status == 'Submitted' %>
 		<strong>Action :</strong>
 		<%= link_to 'Accepted', update_accept_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
 		<%= link_to 'Rejected', update_reject_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
     <%end%>
 </p>
-<% unless @user_monthly_approval.status == 'Submitted' && !policy(@user_monthly_approval).user_claim? %>
+<% unless @user_monthly_approval.status == 'Submitted' || @user_monthly_approval.status == 'Accepted' %>
+  <% if !current_admin %>
   <%= link_to 'Submit', update_status_user_monthly_approval_path(@user_monthly_approval), class:"btn" %>
+  <%end%>
 <% end %>
 
 <%= render 'expense_entries/index' %>

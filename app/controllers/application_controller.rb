@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
  	protect_from_forgery
 
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.permit(:sign_up, keys: [:company_id])
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:company_id, :phone, :name, :position])
 	end
 
 	def pundit_user
