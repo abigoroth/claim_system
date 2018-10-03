@@ -2,7 +2,9 @@
 
 <h1>Localhost Claims</h1>
 <div class="text-right">
+<% if policy(@user_monthly_approval).user_claim? %>
 <%= link_to 'Add Expense', add_expense_user_monthly_approval_path(@user_monthly_approval) %>
+<%end%>
 </div>
 <div class='card'>
 	<div id="table" class="table-editable">
@@ -69,9 +71,9 @@
 		
 	</div>
 </div>
-
+<% if policy(@user_monthly_approval).user_claim? %>
 <%= link_to 'Re-Calculate', user_monthly_approval_path ,class: "btn" %>
-
+<%end%>
 <br>
 
 <script type="text/javascript">
