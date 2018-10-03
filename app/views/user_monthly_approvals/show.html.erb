@@ -1,4 +1,5 @@
 <%= link_to "Print",print_claim_user_monthly_approval_path(@user_monthly_approval, format: 'pdf'), target: '_blank', class: "btn"  %>
+
 <p>
   <strong>Staff :</strong>
   <%= @user_monthly_approval.staff.name %>
@@ -33,7 +34,13 @@
 <% end %>
 
 <%= render 'expense_entries/index' %>
+<<<<<<< HEAD
 
+=======
+<% if policy(@user_monthly_approval).user_claim? %>
+<%= render partial: 'file_uploads/form', locals: { file_upload: @file_upload } %>
+<%end%>
+>>>>>>> 3dd2b2a5440d420957f41f65fcc0a715ddc3737b
 <%= render partial: 'file_uploads/show', locals: { file_upload: @file_upload } %>
 
 <!--
